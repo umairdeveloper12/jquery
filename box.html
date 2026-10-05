@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery box</title>
+
+    <style>
+      .main {
+        height: 500px;
+        width: 500px;
+        background-color: lightblue;
+      }
+
+      .outer {
+        height: 400px;
+        width: 400px;
+        background-color: lightsalmon;
+      }
+
+      .inner {
+        height: 300px;
+        width: 300px;
+        background-color: blueviolet;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h2>Main Box</h2>
+
+      <div class="outer">
+        <h2>Outer Box</h2>
+
+        <div class="inner">
+          <h2>Inner Box</h2>
+        </div>
+      </div>
+    </div>
+
+    <button id="btn">Add to cart</button>
+    <button id="del">Delete from cart</button>
+
+    <div
+      class="box"
+      style="border: 2px solid black; height: 700px; width: 700px"
+    >
+      <h3>Product List</h3>
+    </div>
+
+    <script src="js/jquery-4.0.0.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        $("#btn").click(() => {
+          $(".inner").parents(".main").clone().appendTo(".box");
+        });
+
+        $("#del").click(() => {
+          $(".inner").parents(".main").detach(".box");
+        });
+      });
+    </script>
+  </body>
+</html>

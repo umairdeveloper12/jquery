@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jquery practice</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        gap: 30px;
+      }
+
+      .box1,
+      .box2 {
+        height: 300px;
+        width: 300px;
+        border: 2px solid black;
+        padding: 0 20px;
+        cursor: pointer;
+        border-radius: 12px;
+      }
+
+      .box1-btns button {
+        height: 40px;
+        width: 120px;
+        background-color: silver;
+        outline: none;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        color: black;
+        font-weight: 550;
+        font-size: 11pt;
+        margin-right: 5px;
+      }
+
+      .box1-btns button:hover {
+        background-color: darkgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box1" id="box1">
+        <h1>Box 1</h1>
+      </div>
+
+      <div class="box1-btns">
+        <button id="slide-up">Slide</button>
+        <button id="fade-in">Fade</button>
+        <button id="animate">Animate</button>
+      </div>
+
+      <div class="box2" id="box2">
+        <h1>Box 2</h1>
+      </div>
+    </div>
+
+    <script src="js/jquery-4.0.0.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        let isAnimated = false;
+        let isSlided = false;
+        let isFaded = false;
+
+        $("#box1").click(() => {
+          $("#box1").css("background", "red");
+        });
+
+        $("#box1").dblclick(() => {
+          $("#box1").css("background", "blue");
+        });
+
+        $("#slide-up").click(() => {
+          if (isSlided === true) {
+            isSlided = false;
+
+            $("#box1").slideUp();
+          } else {
+            isSlided = true;
+
+            $("#box1").slideDown();
+          }
+        });
+
+        $("#fade-in").click(() => {
+          if (isFaded === true) {
+            isFaded = false;
+
+            $("#box1").fadeIn();
+          } else {
+            isFaded = true;
+
+            $("#box1").fadeOut();
+          }
+        });
+
+        $("#animate").click(() => {
+          if (isAnimated === false) {
+            isAnimated = true;
+
+            $("#box1").animate({
+              left: "250px",
+              opacity: "0.5",
+              height: "150px",
+              width: "150px",
+              fontSize: "8pt",
+            });
+          } else {
+            isAnimated = false;
+
+            $("#box1").animate({
+              left: "0px",
+              opacity: "1",
+              height: "300px",
+              width: "300px",
+              fontSize: "11pt",
+            });
+          }
+        });
+
+        $("#box2").mouseenter(() => {
+          $("#box2").css("background", "green");
+        });
+
+        $("#box2").mouseleave(() => {
+          $("#box2").css("background", "yellow");
+        });
+      });
+    </script>
+  </body>
+</html>
